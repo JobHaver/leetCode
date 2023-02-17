@@ -1,7 +1,7 @@
 # leetCode
 leet code answers
 
-Uploading LeetCode awnsers here. Naming convention is if the URL of the problem is
+Uploading LeetCode answers here. Naming convention is if the URL of the problem is
 
 "https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/" 
 
