@@ -6,10 +6,8 @@ public:
         vector<int> curr, next;
         int count = 0;
 
-        for(int i = 0; i < arr.size(); i++){// initalize
+        for(int i = 0; i < arr.size(); i++)// initalize
             duplicates[arr[i]].push_back(i);
-            visited[i] == false;
-        }
 
         visited[0] = true;
         curr.push_back(0);
