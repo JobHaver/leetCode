@@ -20,8 +20,6 @@
  * };
  */
 class Solution {
-    vector<int> list;
-
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         list.clear();
@@ -36,6 +34,9 @@ public:
 
         return helper(0, list.size()-1);
     }
+
+private:
+	vector<int> list;
 
     TreeNode* helper(int left, int right){
         int mid = (left + right) / 2;
