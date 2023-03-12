@@ -38,7 +38,7 @@ public:
         ListNode *curr = head, *currL;
         map<int, int> nums;
 
-        for(ListNode *list : lists){
+        for(ListNode *&list : lists){
             currL = list;
             while(currL){
                 nums[currL->val]++;
@@ -46,7 +46,7 @@ public:
             }
         }
 
-        for(pair<const int, int>& i : nums){
+        for(pair<const int, int> &i : nums){
             while(i.second--){
                 curr->next = new ListNode(i.first);
                 curr = curr->next;
