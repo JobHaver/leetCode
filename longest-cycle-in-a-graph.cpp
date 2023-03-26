@@ -1,8 +1,7 @@
 class Solution {
 public:
     int longestCycle(vector<int>& edges) {
-        vector<bool> visited(edges.size());
-        vector<int> group(edges.size());
+        vector<int> visited(edges.size());
         int ans = -1;
         int cycle = 0;
 
@@ -11,12 +10,11 @@ public:
             if(!visited[i]){
                 int curr = i;
                 while(curr > -1 && !visited[curr]){
-                    visited[curr] = true;
-                    group[curr] = cycle;
+                    visited[curr] = cycle;
                     curr = edges[curr];
                 }
 
-                if(curr > -1 && group[curr] == cycle){
+                if(curr > -1 && visited[curr] == cycle){
                     int loop = curr;
                     int count = 1;
                     curr = edges[curr];
