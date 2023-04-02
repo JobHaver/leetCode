@@ -6,10 +6,7 @@ private:
         while(left < right){
             middle = (left + right) / 2;
 
-            if(potions[middle] * spell < success)
-                left = middle + 1;
-            else
-                right = middle;
+            potions[middle] * spell < success ? left = middle + 1 : right = middle;
         }
 
         return left;
