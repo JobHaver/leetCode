@@ -13,18 +13,19 @@ private:
 
 public:
     int numSimilarGroups(vector<string>& strs) {
-        vector<vector<string>> groups;
-        for(string& s1 : strs){
-            vector<string>* group = NULL;
-            for(vector<string>& v : groups){
-                for(string& s2 : v){
-                    if(compare(s1, s2)){
+        vector<vector<int>> groups;
+        for(int i = 0; i < strs.size(); i++){
+            string& s1 = strs[i];
+            vector<int>* group = NULL;
+            for(vector<int>& v : groups){
+                for(int s2 : v){
+                    if(compare(s1, strs[s2])){
                         if(group){
                             v.insert(v.end(), group->begin(), group->end());
                             group->clear();
                         }
                         else
-                            v.push_back(s1);
+                            v.push_back(i);
                             
                         group = &v;
                         break;
@@ -33,12 +34,12 @@ public:
             }
             
             if(!group)
-                groups.push_back(vector<string>({s1}));
+                groups.push_back(vector<int>({i}));
         }
 
         int ans = 0;
 
-        for(vector<string>& v : groups){
+        for(vector<int>& v : groups){
             if(!v.empty())
                 ans++;
         }
