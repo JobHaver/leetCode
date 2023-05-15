@@ -27,9 +27,7 @@ public:
             tail = tail->next;
         }
 
-        int temp = tail->val;
-        tail->val = first->val;
-        first->val = temp;
+        swap(first->val,tail->val);
 
         return head;
     }
