@@ -11,16 +11,17 @@ class Solution {
 private:
     vector<int> ans;
     TreeNode *t;
+    int k;
 
-    int finder(TreeNode* curr, int k){
+    int finder(TreeNode* curr){
         if(curr){
             if(curr == t){
                 addNodes(curr, k);
                 return k-1;
             }
 
-            int l = finder(curr->left, k);
-            int r = finder(curr->right, k);
+            int l = finder(curr->left);
+            int r = finder(curr->right);
             
             if(!l || !r)
                 ans.push_back(curr->val);
@@ -49,10 +50,11 @@ private:
     }
 
 public:
-    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int depth) {
         ans.clear();
         t = target;
-        finder(root, k);
+        k = depth;
+        finder(root);
 
         return ans;
     }
