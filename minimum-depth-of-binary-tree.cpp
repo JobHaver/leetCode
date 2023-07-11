@@ -10,29 +10,19 @@
  * };
  */
 class Solution {
+private:
+    int helper(TreeNode* curr, int depth){
+        if(!curr)
+            return INT_MAX;
+
+        if(!curr->left && !curr->right)
+            return depth;
+        
+        return min(helper(curr->left, depth+1), helper(curr->right, depth+1));
+    }
+
 public:
     int minDepth(TreeNode* root) {
-        if(!root) 
-            return 0;
-
-        queue<TreeNode*> row;
-        row.push(root);
-        int ans = 0;
-
-        while(!row.empty()){
-            ans++;
-            for(int rowSize = row.size(); rowSize--;){
-                TreeNode* curr = row.front();
-                row.pop();
-                if(!curr->left && !curr->right)
-                    return ans;
-                if(curr->left)
-                    row.push(curr->left);
-                if(curr->right)
-                    row.push(curr->right);
-            }
-        }
-
-        return ans;
+        return root ? helper(root, 1) : 0;
     }
 };
