@@ -8,9 +8,7 @@ private:
         if(visited[i])
             return safe[i];
         
-        visited[i] = true;
-
-        bool s = true;
+        bool s = visited[i] = true;
         for(int j = 0; s && j < (*g)[i].size(); j++)
             s = helper((*g)[i][j]) && s;
 
