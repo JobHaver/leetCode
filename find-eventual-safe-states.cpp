@@ -11,8 +11,8 @@ private:
         visited[i] = true;
 
         bool s = true;
-        for(int n : (*g)[i])
-            s = s && helper(n);
+        for(int j = 0; s && j < (*g)[i].size(); j++)
+            s = helper((*g)[i][j]) && s;
 
         return safe[i] = s;
     }
@@ -24,12 +24,9 @@ public:
         safe.resize(size);
         g = &graph;
 
-        for(int i = 0; i < size; i++)
-            helper(i);
-
         vector<int> ans;
         for(int i = 0; i < size; i++)
-            if(safe[i]) ans.push_back(i);
+            if(helper(i)) ans.push_back(i);
 
         return ans;
     }
