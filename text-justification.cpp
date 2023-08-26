@@ -4,37 +4,29 @@ public:
         vector<string> ans;
 
         for(int i = 0; i < words.size(); ){
-            vector<int> temp;
-            int length = 0;
-            for(;i < words.size() && length + temp.size() + words[i].length() <= maxWidth; i++){   
-                temp.push_back(i);
+            int length = 0, start = i;
+            for(; i < words.size() && length + (i - start) + words[i].length() <= maxWidth; i++)
                 length += words[i].length();
-            }
                 
             string line;
-            if(temp.size() == 1 || i >= words.size()){
-                int rem = maxWidth;
-                for(int s : temp){
-                    line += words[s];
-                    rem -= words[s].length();
-                    if(rem--) //dont need to check for < 0
-                        line += ' ';
+            if(i - start == 1 || i >= words.size()){
+                int width = maxWidth;
+                for(; start < i; start++){
+                    width -= words[start].length();
+                    line += width-- ? words[start] + ' ' : words[start]; //dont need to check for < 0
                 }
                 
-                if(rem > 0)
-                    line += string(rem, ' ');
+                if(width > 0)
+                    line += string(width, ' ');
             }
             else{
-                int size = temp.size()-1, diff = maxWidth - length, avg = diff / size, rem = diff % size;
+                int end = i - 1, size = i - start - 1, diff = maxWidth - length;
+                int avg = diff / size, rem = diff % size;
                 
-                for(int j = 0; j < size; j++){
-                    line += words[temp[j]];
-                    line += string(avg, ' ');
-                    if(rem-- > 0)
-                        line += ' ';
-                }
+                for(; start < end; start++)
+                    line += words[start] + string(rem-- > 0 ? avg + 1 : avg, ' ');
 
-                line += words[temp[size]]; // last elm
+                line += words[end]; // last word
             }
 
             ans.push_back(line);
