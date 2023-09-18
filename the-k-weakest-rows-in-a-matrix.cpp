@@ -20,6 +20,5 @@ public:
             ans[i] = weakest.top().second;
         
         return ans;
-
     }
 };
