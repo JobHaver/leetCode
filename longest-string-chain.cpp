@@ -15,19 +15,16 @@ private:
 public:
     int longestStrChain(vector<string>& words) {
         int chainLength[words.size()];
-        string *pointers[words.size()];
+        string *p[words.size()];
         for(int i = 0; i < words.size(); i++)
-            pointers[i] = &words[i];
+            p[i] = &words[i];
 
-        sort(pointers, pointers + words.size(), [](const string* lhs, const string* rhs){return lhs->size() > rhs->size();});
+        sort(p, p + words.size(), [](const string* lhs, const string* rhs){return lhs->size() > rhs->size();});
 
         for(int i = 0; i < words.size(); i++){
             int lenMax = 1;
-            for(int j = i - 1; j >= 0 && pointers[j]->size() <= pointers[i]->size() + 1; j--){
-                if(pointers[j]->size() == pointers[i]->size() || lenMax > chainLength[j])
-                    continue;
-                
-                if(valid(*(pointers[i]), *(pointers[j])))
+            for(int j = i - 1; j >= 0 && p[j]->size() <= p[i]->size() + 1; j--){
+                if(p[j]->size() != p[i]->size() && lenMax <= chainLength[j] && valid(*(p[i]), *(p[j])))
                     lenMax = chainLength[j] + 1;
             }
 
