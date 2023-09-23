@@ -1,24 +1,33 @@
 class Solution {
+private:
+    bool valid(string &s1, string &s2){
+        int k = 0, b = 0;
+        for(char c : s2){
+            if(c == s1[k])
+                k++;
+            else if(b++)
+                return false;
+        }
+
+        return true;
+    }
+
 public:
     int longestStrChain(vector<string>& words) {
         int chainLength[words.size()];
-        sort(words.begin(), words.end(), [](const string& lhs, const string& rhs){return lhs.size() > rhs.size();});
+        string *pointers[words.size()];
+        for(int i = 0; i < words.size(); i++)
+            pointers[i] = &words[i];
+
+        sort(pointers, pointers + words.size(), [](const string* lhs, const string* rhs){return lhs->size() > rhs->size();});
 
         for(int i = 0; i < words.size(); i++){
             int lenMax = 1;
-            for(int j = i - 1; j >= 0 && words[j].size() <= words[i].size() + 1; j--){
-                if(words[j].size() == words[i].size() || lenMax > chainLength[j])
+            for(int j = i - 1; j >= 0 && pointers[j]->size() <= pointers[i]->size() + 1; j--){
+                if(pointers[j]->size() == pointers[i]->size() || lenMax > chainLength[j])
                     continue;
                 
-                int k = 0, b = 0;
-                for(char c : words[j]){
-                    if(c == words[i][k])
-                        k++;
-                    else if(b++)
-                        break;
-                }
-
-                if(b == 1)
+                if(valid(*(pointers[i]), *(pointers[j])))
                     lenMax = chainLength[j] + 1;
             }
 
