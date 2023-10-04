@@ -11,10 +11,8 @@ public:
     }
     
     int get(int key) {
-        if(map.find(key) == map.end())
-            return -1;
-        else
-            return map[key];
+        auto mp = map.find(key);
+        return mp == map.end() ? -1 : mp->second;
     }
     
     void remove(int key) {
