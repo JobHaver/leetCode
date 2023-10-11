@@ -12,10 +12,8 @@ public:
             p.second = curr += p.second;
             
         vector<int> ans(people.size());
-        for(int i = 0; i < people.size(); i++){
-            auto p = blooming.lower_bound(people[i]);
-            ans[i] = p->first == people[i] ? p->second : (--p)->second;
-        }
+        for(int i = 0; i < people.size(); i++)
+            ans[i] = (--blooming.upper_bound(people[i]))->second;
 
         return ans;
     }
