@@ -19,7 +19,7 @@
 class NestedIterator {
 private:
     void unpack(vector<NestedInteger> &nl){
-        for(NestedInteger n : nl)
+        for(NestedInteger &n : nl)
             if(n.isInteger()) list.push_back(n.getInteger()); else unpack(n.getList());
     }
 
