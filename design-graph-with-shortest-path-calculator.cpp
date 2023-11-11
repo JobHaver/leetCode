@@ -18,23 +18,20 @@ public:
         vector<int> costs(edges.size(), -1);
         queue<int> next;
 
-        next.push(node1);
-        costs[node1] = 0;
-        while(!next.empty()){
+        for(next.push(node1), costs[node1] = 0; !next.empty(); next.pop()){
             int curr = next.front();
-            next.pop();
-            
             if(costs[curr] >= ans)
                 continue;
                 
             for(pair<int, int> &p : edges[curr]){
-                if(costs[p.first] == -1 || costs[p.first] > costs[curr] + p.second){
-                    costs[p.first] = costs[curr] + p.second;
-                    if(p.first == node2)
-                        ans = costs[p.first];
-                    else
-                        next.push(p.first);
-                }
+                if(costs[p.first] != -1 && costs[p.first] <= costs[curr] + p.second)
+                    continue;
+
+                costs[p.first] = costs[curr] + p.second;
+                if(p.first == node2)
+                    ans = costs[p.first];
+                else
+                    next.push(p.first);
             }
         }
 
