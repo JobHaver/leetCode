@@ -9,7 +9,7 @@ public:
         int i = 0;
         for(char v : vowels){
             for(int curr = v - 'A'; chars[curr]--;){
-                for(; find(vowels.begin(), vowels.end(), s[i]) == vowels.end(); i++){}
+                for(; vowels.find(s[i]) == string::npos; i++){}
                 s[i++] = v;
             }
         }
