@@ -10,18 +10,20 @@
  * };
  */
 class Solution {
+private:
+    vector<int> list;
+
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> list;
-        traversal(root, list);
+        traversal(root);
         return list;
     }
 
-    void traversal(TreeNode* node, vector<int>& list){
+    void traversal(TreeNode* node){
         if(node){
-            traversal(node->left, list);
+            traversal(node->left);
             list.push_back(node->val);
-            traversal(node->right, list);
+            traversal(node->right);
         }
     }
 };
