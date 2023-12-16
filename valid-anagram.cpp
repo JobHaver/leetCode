@@ -8,9 +8,6 @@ public:
         for(char c : t)
             tLetters[c - 'a']++;
 
-        for(int i = 0; i < 26; i++)
-            if(sLetters[i] != tLetters[i]) return false;
-
-        return true;
+        return sLetters == tLetters;
     }
 };
