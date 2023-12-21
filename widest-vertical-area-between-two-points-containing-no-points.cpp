@@ -7,9 +7,9 @@ public:
 
         sort(vx.begin(), vx.end());
 
-        int prev = vx[0], max = 0;
-        for(int i = 0; i < vx.size(); prev = vx[i++])
-            max = std::max(max, vx[i] - prev);
+        int max = 0;
+        for(int i = 1; i < vx.size(); i++)
+            max = std::max(max, vx[i] - vx[i-1]);
 
         return max;
     }
