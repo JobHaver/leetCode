@@ -11,21 +11,19 @@
  */
 public class Solution {
     public ListNode RemoveNthFromEnd(ListNode head, int n) {
-        int size = 0;
-        for(ListNode c = head; c != null; c = c.next)
-            size++;
+        ListNode endFinder, curr, prev;
+        for(endFinder = head; n-- > 0; endFinder = endFinder.next);
         
-        if(size == 1 || (size - n) == 0)
-            return head.next;
-
-        ListNode prev = head, curr = head.next;
-        for(int i = 1, target = size - n; i < target; i++){
+        for(prev = curr = head; endFinder != null; endFinder = endFinder.next){
             prev = curr;
             curr = curr.next;
         }
+
+        if(prev == curr)
+            return head.next;
         
         prev.next = curr.next;
 
-        return head; 
+        return head;
     }
 }
