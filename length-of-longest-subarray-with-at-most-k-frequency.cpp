@@ -9,7 +9,7 @@ public:
             if(++mp[nums[r]] < k)
                 ans = max(ans, ++curr);
             else
-                for(; mp[nums[l]]-- && nums[l++] != nums[r]; curr--);
+                for(; mp[nums[l++]]-- != k; curr--);
         }
 
         return ans;
