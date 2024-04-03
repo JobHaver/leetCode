@@ -1,18 +1,16 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        map<char, char> mp, tmap;//can be ANY valid ascii char
+        vector<char> smap(150), tmap(150);//can be ANY valid ascii char
         for(int i = 0; i < s.size(); i++){
-            char &c = mp[s[i]];
-            if(!c){
-                char &temp = tmap[t[i]];
-                if(temp)
+            if(!smap[s[i]]){
+                if(tmap[t[i]])
                     return false;
                 
-                temp = s[i];
-                c = t[i];
+                tmap[t[i]] = s[i];
+                smap[s[i]] = t[i];
             }
-            else if(c != t[i])
+            else if(smap[s[i]] != t[i])
                 return false;
         }
 
