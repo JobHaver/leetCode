@@ -16,12 +16,13 @@ public:
             auto [currTime, currX, currY] = pq.top();
             pq.pop();
             
-            if(currX == n-1 && currY == m-1)
-                return currTime;
-            
             for(pair<int, int> &p : locations){
                 int x = p.first + currX, y = p.second + currY;
+                
                 if(x >= 0 && y >= 0 && x < n && y < m && !visited[x][y]){
+                    if(x == n-1 && y == m-1)
+                        return max(currTime, moveTime[x][y]) + 1;
+
                     visited[x][y] = true;
                     pq.push({max(currTime, moveTime[x][y]) + 1, x, y});
                 } 
