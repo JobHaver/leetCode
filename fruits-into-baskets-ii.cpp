@@ -5,16 +5,12 @@ public:
         int ans = 0, i;
 
         for(int fruit : fruits){
-            for(i = 0; i < baskets.size(); i++){
-                if(used[i] || fruit > baskets[i])
-                    continue;
-
-                used[i] = true;
-                break;
-            }
+            for(i = 0; i < baskets.size() && (used[i] || fruit > baskets[i]); i++);
 
             if(i >= baskets.size())
                 ans++;
+            else
+                used[i] = true;
         }
 
         return ans;
