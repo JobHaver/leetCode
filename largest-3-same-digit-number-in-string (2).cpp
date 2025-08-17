@@ -6,7 +6,7 @@ public:
 
         do{
             f = num[i - 2], s = num[i - 1], t = num[i];
-            if(f == s && s == t && (ans == '$' || ans - '0' < f - '0'))
+            if(f == s && s == t && (ans == '$' || ans < f))
                 ans = f;
         }
         while(++i < num.size());
