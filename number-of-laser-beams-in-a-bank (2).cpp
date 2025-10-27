@@ -8,13 +8,11 @@ public:
                 if(c == '1')
                     curr++;
                     
-            if(prev && curr)
+            if(curr){
                 ans += curr * prev;
-
-            if(curr)
                 prev = curr;
-
-            curr = 0;
+                curr = 0;
+            }
         }
 
         return ans;
